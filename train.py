@@ -16,7 +16,11 @@ def compute_names(tons):
     accordsMin7 = [e + '7' for e in triadesMin]
     accords7 = [e + '7' for e in tons]
     accordsMaj7 = [e + 'Maj7' for e in tons]
-    return {'triadesMaj' : tons, 'triadesMin' : triadesMin, 'accordsMin7' : accordsMin7, 'accords7' : accords7, 'accordsMaj7' : accordsMaj7}
+    #accordsDemiDim = [e + 'b5' for e in accordsMin7] #Ø
+    accordsDemiDim = [e + ' Ø' for e in tons] #Ø
+    accordsDim = [e + ' °' for e in tons]
+    return {'triadesMaj' : tons, 'triadesMin' : triadesMin, 'accordsMin7' : accordsMin7, 'accords7' : accords7,
+            'accordsMaj7' : accordsMaj7, 'accordsDemiDim' : accordsDemiDim, 'accordsDim' : accordsDim}
 
 def getList(mode):
     """
@@ -25,6 +29,8 @@ def getList(mode):
     3 : only min7
     4 : only 7
     5 : only maj7
+    6 : only demi dim
+    7 : only dim
     12 : all triads (major and minor)
     34 : min7 and 7
     345 : min7, 7 and maj7
@@ -39,6 +45,10 @@ def getList(mode):
         myList = accords7
     if mode == 5:
         myList = accordsMaj7
+    if mode == 6:
+        myList = accordsDemiDim
+    if mode == 7:
+        myList = accordsDim
     if mode == 12:
         myList = triadesMaj + triadesMin
     if mode == 34:
@@ -101,6 +111,8 @@ triadesMin = dic['triadesMin']
 accordsMin7 = dic['accordsMin7']
 accords7 = dic['accords7']
 accordsMaj7 = dic['accordsMaj7']
+accordsDemiDim = dic['accordsDemiDim']
+accordsDim = dic['accordsDim']
 		
 """
 ------------------------------------------------------------------------------------------------------------------------------
