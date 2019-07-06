@@ -22,8 +22,10 @@ def compute_names(tons):
     return {'triadesMaj' : tons, 'triadesMin' : triadesMin, 'accordsMin7' : accordsMin7, 'accords7' : accords7,
             'accordsMaj7' : accordsMaj7, 'accordsDemiDim' : accordsDemiDim, 'accordsDim' : accordsDim}
 
-def getList(mode):
+def getList(mode : int) -> list:
     """
+    Return the list of tones I am gonna work with, according to the following mapping :
+    
     1 : only major triads
     2 : only minor triads
     3 : only min7
