@@ -114,6 +114,7 @@ def train(mode : int, dt, nbRepetitions = 2):
 TONS = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'F#', 'B', 'E', 'A', 'D', 'G']
 supl_tons = ['A#', 'D#', 'G#', 'C#', 'Gb']
 TONS = TONS + supl_tons
+#TONS = supl_tons
 dic = compute_names(TONS)
 triadesMaj = TONS
 triadesMin = dic['triadesMin']
