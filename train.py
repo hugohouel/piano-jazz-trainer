@@ -64,7 +64,7 @@ def getList(mode : int) -> list:
         myList = accordsMin7 + accords7 + accordsMaj7
     return myList
 
-def train(mode : int, dt, nbRepetitions = 2):
+def train(mode : int, dt, nbRepetitions = 2, subtitle=""):
     """ Show the chord to play. One chord every dt seconds. Once all the chords have been played once, another round can begin.
     
     Mode : 
@@ -103,6 +103,12 @@ def train(mode : int, dt, nbRepetitions = 2):
         msg = Message(root, text=el)
         msg.config(font=('times', 100, 'italic bold underline'))
         msg.pack()
+        
+        # deuxième message optionnel
+        msg1 = Message(root, text= subtitle)
+        msg1.config(font=('times', 50))
+        msg1.pack()
+        
         root.mainloop()
 
 """
@@ -160,11 +166,20 @@ parser.add_argument('-s',
 					default = 10,
                     help="Number of times the list will be browsed.")
 
+parser.add_argument('-t',
+                    '--text',
+                    action="store",
+                    dest="subtitle",
+                    type=str,
+					default = "",
+                    help="Subtitle to print while training.")
+
 args = parser.parse_args()
 mode = args.mode
 delta_t = args.delta_t
 nb_cycles = args.nb_cycles
 sleep_time = args.sleep_time
+subtitle = args.subtitle
 
 """
 ------------------------------------------------------------------------------------------------------------------------------
@@ -177,7 +192,7 @@ print(f"You have asked this training :\n\nmode : {mode}     |       delta_t : {d
 sleep(sleep_time)
 
 try:
-    train(mode = mode, dt = delta_t, nbRepetitions = nb_cycles)
+    train(mode = mode, dt = delta_t, nbRepetitions = nb_cycles, subtitle = subtitle)
 except KeyboardInterrupt:
     print("                                                            INTERRUPTION OF TRAINING    ")
 finally:

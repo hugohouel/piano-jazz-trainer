@@ -1,3 +1,3 @@
-:: Min7 3 sons en position basse puis haute.
+:: Maj7 en position 5 7 1 3
 
-python train.py --mode 3 --delta 3.0 --nb_cycles 2
+python train.py --mode 5 --delta 5 --nb_cycles 2 --text "5 7 1 3"
