@@ -1,3 +1,3 @@
-:: Accord7 2 sons en position basse puis haute. Record 1.8 (doit être établi sur 3 cycles)
+:: Accord7 2 sons en position basse puis haute. Record 1.8
 
-python train.py --mode 4 --delta 2.0 --nb_cycles 3		
+python train.py --mode 4 --delta 1.8 --nb_cycles 2		
