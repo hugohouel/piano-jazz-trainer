@@ -20,9 +20,10 @@ def compute_names(tons):
     accordsDemiDim = [e + ' Ø' for e in tons] #Ø
     accordsDim = [e + ' °' for e in tons]
     accordsAugm = [e + ' aug' for e in tons]
+    modesNames = ['Ionian', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Eolian', 'Locrian']
     return {'triadesMaj' : tons, 'triadesMin' : triadesMin, 'accordsMin7' : accordsMin7, 'accords7' : accords7,
             'accordsMaj7' : accordsMaj7, 'accordsDemiDim' : accordsDemiDim, 'accordsDim' : accordsDim,
-           'accords_augm' : accordsAugm}
+           'accords_augm' : accordsAugm, 'modes' : modesNames}
 
 def getList(mode : int) -> list:
     """
@@ -39,6 +40,7 @@ def getList(mode : int) -> list:
     12 : major and minor triads
     34 : min7 and 7
     345 : min7, 7 and maj7
+    9 : modes
     """
     if mode == 1:
         myList = triadesMaj
@@ -62,6 +64,9 @@ def getList(mode : int) -> list:
         myList = accordsMin7 + accords7
     if mode == 345 :
         myList = accordsMin7 + accords7 + accordsMaj7
+    if mode == 9:
+        myList = [tone + ' ' + m for tone in triadesMaj for m in modes]
+
     return myList
 
 def train(mode : int, dt, nbRepetitions = 2, subtitle=""):
@@ -130,6 +135,7 @@ accordsMaj7 = dic['accordsMaj7']
 accordsDemiDim = dic['accordsDemiDim']
 accordsDim = dic['accordsDim']
 accordsAugm = dic['accords_augm']
+modes = dic['modes']
 
 		
 """
