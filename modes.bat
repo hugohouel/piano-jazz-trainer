@@ -2,4 +2,4 @@
 :: Record 20 (pendant 4 minutes)
 :: Avec delta = 20 secondes, il faut 40 minutes pour tous les faire!
 
-python train.py --mode 9 --delta 14 --nb_cycles 1
+python train.py --mode 9 --delta 13 --nb_cycles 1
