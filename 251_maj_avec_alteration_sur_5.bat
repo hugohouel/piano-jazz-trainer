@@ -2,6 +2,6 @@
 :: Faire les 2 positions, sauf pour Fa# où il n'y en a qu'une.
 :: On altère, sur le 5, la note la plus haute : on a donc soit b9 soit b13.
 
-:: record 7.3
+:: record 7.0
 
-python train.py --mode 1 --delta 7.0 --nb_cycles 1 -t "2 5 1 majeurs alteres"
+python train.py --mode 1 --delta 6.8 --nb_cycles 1 -t "2 5 1 majeurs alteres"
