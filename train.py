@@ -21,9 +21,11 @@ def compute_names(tons):
     accordsDim = [e + ' °' for e in tons]
     accordsAugm = [e + ' aug' for e in tons]
     modesNames = ['Ionian', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Eolian', 'Locrian']
+    intervalles = ['Seconde min', 'Seconde maj', 'Tierce min', 'Tierce maj', 'Quarte', 'Quarte augm / triton',
+                   'Quinte', 'Sixte mineure', 'Sixte majeure', 'Septième min', 'Septieme maj']
     return {'triadesMaj' : tons, 'triadesMin' : triadesMin, 'accordsMin7' : accordsMin7, 'accords7' : accords7,
             'accordsMaj7' : accordsMaj7, 'accordsDemiDim' : accordsDemiDim, 'accordsDim' : accordsDim,
-           'accords_augm' : accordsAugm, 'modes' : modesNames}
+           'accords_augm' : accordsAugm, 'modes' : modesNames, 'intervalles' : intervalles}
 
 def getList(mode : int) -> list:
     """
@@ -41,6 +43,7 @@ def getList(mode : int) -> list:
     34 : min7 and 7
     345 : min7, 7 and maj7
     9 : modes
+    99 : intervalles
     """
     if mode == 1:
         myList = triadesMaj
@@ -66,6 +69,8 @@ def getList(mode : int) -> list:
         myList = accordsMin7 + accords7 + accordsMaj7
     if mode == 9:
         myList = [tone + ' ' + m for tone in triadesMaj for m in modes]
+    if mode == 99:
+        myList = [interv + '\n de \n ' + tone for interv in intervalles for tone in triadesMaj]
 
     return myList
 
@@ -136,6 +141,7 @@ accordsDemiDim = dic['accordsDemiDim']
 accordsDim = dic['accordsDim']
 accordsAugm = dic['accords_augm']
 modes = dic['modes']
+intervalles = dic['intervalles']
 
 		
 """
