@@ -2,6 +2,6 @@
 :: Faire 1 positions, celle qui commence par le voicing min7 de type 2 (serré) avec septième en bas et tierce en haut.
 :: On altère la 9 en b9.
 
-:: record 6.7
+:: record 6.0
 
-python train.py --mode 1 --delta 6.0 --nb_cycles 2 -t "2 5 1 majeurs alteres"
+python train.py --mode 1 --delta 5.6 --nb_cycles 2 -t "2 5 1 majeurs alteres"
