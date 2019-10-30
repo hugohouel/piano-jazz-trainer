@@ -23,12 +23,20 @@ def compute_names(tons):
     modesNames = ['Ionian', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Eolian', 'Locrian']
     intervalles = ['Seconde min', 'Seconde maj', 'Tierce min', 'Tierce maj', 'Quarte', 'Quarte augm / triton',
                    'Quinte', 'Sixte mineure', 'Sixte majeure', 'Septième min', 'Septieme maj']
+    tritons = ['Triton de \n ' + e for e in TONS]
+    quartes = ['Quarte de \n ' + e for e in TONS]
+    sixtes_maj = ['Sixte maj de \n ' + e for e in TONS]
+    sixtes_min = ['Sixte min de \n ' + e for e in TONS]
+
+
     return {'triadesMaj' : tons, 'triadesMin' : triadesMin, 'accordsMin7' : accordsMin7, 'accords7' : accords7,
             'accordsMaj7' : accordsMaj7, 'accordsDemiDim' : accordsDemiDim, 'accordsDim' : accordsDim,
-           'accords_augm' : accordsAugm, 'modes' : modesNames, 'intervalles' : intervalles}
+           'accords_augm' : accordsAugm, 'modes' : modesNames, 'intervalles' : intervalles,
+            'tritons' : tritons, 'quartes' : quartes, 'sixtes_min' : sixtes_min, 'sixtes_maj' : sixtes_maj}
 
 def getList(mode : int) -> list:
     """
+    Does the mapping between code and chords.
     Return the list of tones I am gonna work with, according to the following mapping :
     
     1 : only major triads
@@ -44,6 +52,7 @@ def getList(mode : int) -> list:
     345 : min7, 7 and maj7
     9 : modes
     99 : intervalles
+    991 : tritons
     """
     if mode == 1:
         myList = triadesMaj
@@ -71,6 +80,14 @@ def getList(mode : int) -> list:
         myList = [tone + ' ' + m for tone in triadesMaj for m in modes]
     if mode == 99:
         myList = [interv + '\n de \n ' + tone for interv in intervalles for tone in triadesMaj]
+    if mode == 991:
+        myList = tritons
+    if mode == 992:
+        myList = quartes
+    if mode == 993:
+        myList = sixtes_min
+    if mode == 994:
+        myList = sixtes_maj
 
     return myList
 
@@ -142,6 +159,10 @@ accordsDim = dic['accordsDim']
 accordsAugm = dic['accords_augm']
 modes = dic['modes']
 intervalles = dic['intervalles']
+tritons = dic['tritons']
+quartes = dic['quartes']
+sixtes_maj = dic['sixtes_maj']
+sixtes_min = dic['sixtes_min']
 
 		
 """
