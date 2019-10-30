@@ -4,4 +4,4 @@
 
 :: record 6.0
 
-python train.py --mode 1 --delta 5.6 --nb_cycles 2 -t "2 5 1 majeurs alteres"
+python train.py --mode 1 --delta 5.2 --nb_cycles 2 -t "2 5 1 majeurs alteres"
