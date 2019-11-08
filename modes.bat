@@ -4,4 +4,4 @@
 
 :: Record 8.7
 
-python train.py --mode 9 --delta 8.5 --nb_cycles 1
+python train.py --mode 9 --delta 8.2 --nb_cycles 1
