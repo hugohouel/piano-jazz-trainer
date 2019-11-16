@@ -31,12 +31,14 @@ def compute_names(tons):
     neuviemes = ['Neuvieme de \n ' + e for e in TONS]
     onziemes = ['Onzieme de \n ' + e for e in TONS]
     treiziemes = ['Treizieme de \n ' + e for e in TONS]
+    accordsMinMaj7 = [e + ' mM7' for e in tons]
 
     return {'triadesMaj' : tons, 'triadesMin' : triadesMin, 'accordsMin7' : accordsMin7, 'accords7' : accords7,
             'accordsMaj7' : accordsMaj7, 'accordsDemiDim' : accordsDemiDim, 'accordsDim' : accordsDim,
            'accords_augm' : accordsAugm, 'modes' : modesNames, 'intervalles' : intervalles,
             'tritons' : tritons, 'quartes' : quartes, 'sixtes_min' : sixtes_min, 'sixtes_maj' : sixtes_maj,
-            'neuviemes' : neuviemes, 'onziemes' : onziemes, 'treiziemes' : treiziemes}
+            'neuviemes' : neuviemes, 'onziemes' : onziemes, 'treiziemes' : treiziemes,
+            'accordsMinMaj7' : accordsMinMaj7}
 
 def getList(mode : int) -> list:
     """
@@ -63,6 +65,7 @@ def getList(mode : int) -> list:
     999 : neuviemes
     9911 : onziemes
     9913 : treiziemes
+    0 : accords min Maj7
     """
     if mode == 1:
         myList = triadesMaj
@@ -104,21 +107,13 @@ def getList(mode : int) -> list:
         myList = onziemes
     if mode == 9913:
         myList = treiziemes
+    if mode == 0:
+        myList = accordsMinMaj7
 
     return myList
 
 def train(mode : int, dt, nbRepetitions = 2, subtitle=""):
-    """ Show the chord to play. One chord every dt seconds. Once all the chords have been played once, another round can begin.
-    
-    Mode : 
-    1 : only major triads
-    2 : only minor triads
-    3 : only min7
-    4 : only 7
-    5 : only maj7
-    12 : all triads (major and minor)
-    34 : min7 and 7
-    345 : min7, 7 and maj7"""
+    """ Show the chord to play. One chord every dt seconds. Once all the chords have been played once, another round can begin."""
 
     myList = getList(mode)
     listOfChosenElements = []
@@ -182,6 +177,7 @@ sixtes_min = dic['sixtes_min']
 neuviemes = dic['neuviemes']
 onziemes = dic['onziemes']
 treiziemes = dic['treiziemes']
+accordsMinMaj7 = dic['accordsMinMaj7']
 
 		
 """
