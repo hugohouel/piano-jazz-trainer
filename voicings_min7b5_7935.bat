@@ -1,4 +1,7 @@
-﻿:: Accords demi-dim - ou min7b5 en position fondamentale 1 3 5 7. Jouer la triade dim et ajouter la 7 mineure
-:: Record 2.9
+﻿:: Voicings min7b5 en position de type II, 7935.
+:: Penser à mettre 7 et 3 (voicings min7 à deux sons de type II) 
+:: puis ajouter le triton en haut (une tierce mineure au dessus de la tierce)et la neuvième.
 
-python train.py --mode 6 --delta 2.5 --nb_cycles 2
+:: Record 5
+
+python train.py --mode 6 --delta 5 --nb_cycles 2
