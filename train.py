@@ -44,28 +44,31 @@ def getList(mode : int) -> list:
     """
     Does the mapping between code and chords.
     Return the list of tones I am gonna work with, according to the following mapping :
-    
-    1 : only major triads
-    2 : only minor triads
-    3 : only min7
-    4 : only 7
-    5 : only maj7
-    6 : only demi dim
-    7 : only dim
-    8 : only augm
-    12 : major and minor triads
-    34 : min7 and 7
-    345 : min7, 7 and maj7
-    9 : modes
-    99 : intervalles
-    991 : tritons
-    992 : quartes
-    993 : sixtes min
-    994 : sixtes maj
-    999 : neuviemes
-    9911 : onziemes
-    9913 : treiziemes
+
+    ------  Triads ------
+    1 : major triads
+    2 : minor triads
+    7 : dim triads
+    8 : augmented triads
+
+    ------  Chords with 4+ tones ------
+    3 : min7
+    4 : 7
+    5 : maj7
+    6 : demi-dim or min7b5
     0 : accords min Maj7
+
+    ------  Theory ------
+    9 : modes
+    99 : all intervals
+    991 : tritons
+    992 : 4th
+    993 : 6th min
+    994 : 6th maj
+    999 : 9th
+    9911 : 11th
+    9913 : 13th
+
     """
     if mode == 1:
         myList = triadesMaj
@@ -83,12 +86,6 @@ def getList(mode : int) -> list:
         myList = accordsDim
     if mode == 8:
         myList = accordsAugm
-    if mode == 12:
-        myList = triadesMaj + triadesMin
-    if mode == 34:
-        myList = accordsMin7 + accords7
-    if mode == 345 :
-        myList = accordsMin7 + accords7 + accordsMaj7
     if mode == 9:
         myList = [tone + ' ' + m for tone in triadesMaj for m in modes]
     if mode == 99:
