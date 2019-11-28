@@ -3,4 +3,4 @@
 :: Les voicings min_maj7 3 sons de type II sont des triades augmentées en partant de la sensible.
 
 
-python train.py --mode 0 --delta 5.2 --nb_cycles 2
+python train.py --mode 0 --delta 4.3 --nb_cycles 2
