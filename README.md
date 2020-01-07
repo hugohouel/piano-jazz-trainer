@@ -1,18 +1,16 @@
 # Piano Jazz Trainer
 
-This piano jazz software allow the player to learn and memorize
+This piano jazz software allow the player to learn and memorize :
 * chords
 * rootless chords 
 * the 7 major modes 
 * all intervals
 
-Via command line, the player chooses what he want to practise among the 4 categories, and precise a time interval, d. 
+Via command line, the player chooses what he wants to practise among the 4 categories, and precise a time interval, d. 
 Every d seconds, the program displays on the screen the symbol of the figure he has to play. 
-Once the player gets confortable with d, he can then try with 0.9 * d, and so on, until he reaches a very quick response.
+Once the player gets confortable with d, he can then try with 0.9 * d, and so on, until he is able to play the right thing very quick.
 
 Rootless Chords : (called voicings) of 2, 3 or 4 notes
-
-Modes Ionian, Dorian, Phrygian, Lydian, Mixolydian, Eolian and in all tonalities
 
 ## Getting Started
 
@@ -21,7 +19,36 @@ Clone the repository. Run the train.py file with your python3 interpreter, using
 * --delta or -d : a number of seconds separating 2 displayed chords, modes, or intervals to play. The smaller, the more difficult
 * --nb_cycles or -n : number of times you want to repeat the training
 
-### Prerequisites
+### Table for the mode
+
+Here is the corresponding table between the mode and the chords to play on the keyboard.
+* 1 : major triads
+* 2 : minor triads
+* 7 : diminished triads
+* 8 : augmented triads
+* 3 : min7
+* 4 : 7
+* 5 : maj7
+* 6 : semi-diminished or min7b5
+* 0 : min Maj7 chords
+* 9 : major modes : Ionian, Dorian, Phrygian, Lydian, Mixolydian, Eolian and Locrian
+* 99 : all intervals
+* 991 : tritons
+* 992 : 4th
+* 993 : 6th min
+* 994 : 6th maj
+* 999 : 9th
+* 9911 : 11th
+* 9913 : 13th
+
+### Example
+To run the training, the user would for example type :
+```
+python train.py --mode 1 --delta 2 --nb_cycles 1
+```
+This would provide a training of major triads. The user would be displayed all 12 major triads once and would have to play one every 2 seconds.
+
+## Prerequisites
 
 To make sure you have all the dependencies required in this project, go at the root and run
 
