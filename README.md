@@ -15,9 +15,13 @@ Rootless Chords : (called voicings) of 2, 3 or 4 notes
 ## Getting Started
 
 Clone the repository. Run the train.py file with your python3 interpreter, using the command line to pass 3 required arguments
-* --mode or -m : describes what subject you want to train on (see the table below)
-* --delta or -d : a number of seconds separating 2 displayed chords, modes, or intervals to play. The smaller, the more difficult
-* --nb_cycles or -n : number of times you want to repeat the training
+* --mode or -m (int): describes what subject you want to train on (see the table below)
+* --delta or -d (positive float): a number of seconds separating 2 displayed chords, modes, or intervals to play. The smaller, the more difficult
+* --nb_cycles or -n (int): number of times you want to repeat the training
+
+You also have at your disposal 2 optional arguments :
+* --sleep_time or -s (positive float): defining, in seconds, the time before the training begins (10s by default, to let you the time to get ready)
+* --text or -t (string): add some text on the screen
 
 ### Table for the mode
 
