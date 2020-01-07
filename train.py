@@ -20,25 +20,55 @@ def compute_names(tons):
     accordsDemiDim = [e + ' Ø' for e in tons] #Ø
     accordsDim = [e + ' °' for e in tons]
     accordsAugm = [e + ' aug' for e in tons]
+    modesNames = ['Ionian', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Eolian', 'Locrian']
+    intervalles = ['Seconde min', 'Seconde maj', 'Tierce min', 'Tierce maj', 'Quarte', 'Quarte augm / triton',
+                   'Quinte', 'Sixte mineure', 'Sixte majeure', 'Septième min', 'Septieme maj']
+    tritons = ['Triton de \n ' + e for e in TONS]
+    quartes = ['Quarte de \n ' + e for e in TONS]
+    sixtes_maj = ['Sixte maj de \n ' + e for e in TONS]
+    sixtes_min = ['Sixte min de \n ' + e for e in TONS]
+
+    neuviemes = ['Neuvieme de \n ' + e for e in TONS]
+    onziemes = ['Onzieme de \n ' + e for e in TONS]
+    treiziemes = ['Treizieme de \n ' + e for e in TONS]
+    accordsMinMaj7 = [e + ' mM7' for e in tons]
+
     return {'triadesMaj' : tons, 'triadesMin' : triadesMin, 'accordsMin7' : accordsMin7, 'accords7' : accords7,
             'accordsMaj7' : accordsMaj7, 'accordsDemiDim' : accordsDemiDim, 'accordsDim' : accordsDim,
-           'accords_augm' : accordsAugm}
+           'accords_augm' : accordsAugm, 'modes' : modesNames, 'intervalles' : intervalles,
+            'tritons' : tritons, 'quartes' : quartes, 'sixtes_min' : sixtes_min, 'sixtes_maj' : sixtes_maj,
+            'neuviemes' : neuviemes, 'onziemes' : onziemes, 'treiziemes' : treiziemes,
+            'accordsMinMaj7' : accordsMinMaj7}
 
 def getList(mode : int) -> list:
     """
+    Does the mapping between code and chords.
     Return the list of tones I am gonna work with, according to the following mapping :
-    
-    1 : only major triads
-    2 : only minor triads
-    3 : only min7
-    4 : only 7
-    5 : only maj7
-    6 : only demi dim
-    7 : only dim
-    8 : only augm
-    12 : major and minor triads
-    34 : min7 and 7
-    345 : min7, 7 and maj7
+
+    ------  Triads ------
+    1 : major triads
+    2 : minor triads
+    7 : dim triads
+    8 : augmented triads
+
+    ------  Chords with 4+ tones ------
+    3 : min7
+    4 : 7
+    5 : maj7
+    6 : demi-dim or min7b5
+    0 : accords min Maj7
+
+    ------  Theory ------
+    9 : modes
+    99 : all intervals
+    991 : tritons
+    992 : 4th
+    993 : 6th min
+    994 : 6th maj
+    999 : 9th
+    9911 : 11th
+    9913 : 13th
+
     """
     if mode == 1:
         myList = triadesMaj
@@ -56,26 +86,31 @@ def getList(mode : int) -> list:
         myList = accordsDim
     if mode == 8:
         myList = accordsAugm
-    if mode == 12:
-        myList = triadesMaj + triadesMin
-    if mode == 34:
-        myList = accordsMin7 + accords7
-    if mode == 345 :
-        myList = accordsMin7 + accords7 + accordsMaj7
+    if mode == 9:
+        myList = [tone + ' ' + m for tone in triadesMaj for m in modes]
+    if mode == 99:
+        myList = [interv + '\n de \n ' + tone for interv in intervalles for tone in triadesMaj]
+    if mode == 991:
+        myList = tritons
+    if mode == 992:
+        myList = quartes
+    if mode == 993:
+        myList = sixtes_min
+    if mode == 994:
+        myList = sixtes_maj
+    if mode == 999:
+        myList = neuviemes
+    if mode == 9911:
+        myList = onziemes
+    if mode == 9913:
+        myList = treiziemes
+    if mode == 0:
+        myList = accordsMinMaj7
+
     return myList
 
 def train(mode : int, dt, nbRepetitions = 2, subtitle=""):
-    """ Show the chord to play. One chord every dt seconds. Once all the chords have been played once, another round can begin.
-    
-    Mode : 
-    1 : only major triads
-    2 : only minor triads
-    3 : only min7
-    4 : only 7
-    5 : only maj7
-    12 : all triads (major and minor)
-    34 : min7 and 7
-    345 : min7, 7 and maj7"""
+    """ Show the chord to play. One chord every dt seconds. Once all the chords have been played once, another round can begin."""
 
     myList = getList(mode)
     listOfChosenElements = []
@@ -130,6 +165,16 @@ accordsMaj7 = dic['accordsMaj7']
 accordsDemiDim = dic['accordsDemiDim']
 accordsDim = dic['accordsDim']
 accordsAugm = dic['accords_augm']
+modes = dic['modes']
+intervalles = dic['intervalles']
+tritons = dic['tritons']
+quartes = dic['quartes']
+sixtes_maj = dic['sixtes_maj']
+sixtes_min = dic['sixtes_min']
+neuviemes = dic['neuviemes']
+onziemes = dic['onziemes']
+treiziemes = dic['treiziemes']
+accordsMinMaj7 = dic['accordsMinMaj7']
 
 		
 """
