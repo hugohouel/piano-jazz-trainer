@@ -60,7 +60,7 @@ pip install -r requirements.txt
 
 ## Contributing
 
-If you're a piano jazz player and feel like contributing, that's great! Contact me to discuss feature enriching / fix.
+If you're a piano jazz player and feel like contributing, that's great! Contact me to discuss feature enriching / fix. Any comment on my code is more than welcomed.
 
 ## Acknowledgments
 
