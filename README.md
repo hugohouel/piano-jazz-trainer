@@ -10,8 +10,6 @@ Via command line, the player chooses what he wants to practise among the 4 categ
 Every d seconds, the program displays on the screen the symbol of the figure he has to play. 
 Once the player gets confortable with d, he can then try with 0.9 * d, and so on, until he is able to play the right thing very quick.
 
-Rootless Chords : (called voicings) of 2, 3 or 4 notes
-
 ## Getting Started
 
 Clone the repository. Run the train.py file with your python3 interpreter, using the command line to pass 3 required arguments
@@ -26,24 +24,24 @@ You also have at your disposal 2 optional arguments :
 ### Table for the mode
 
 Here is the corresponding table between the mode and the chords to play on the keyboard.
+* 0 : min Maj7 chords
 * 1 : major triads
 * 2 : minor triads
-* 7 : diminished triads
-* 8 : augmented triads
 * 3 : min7
 * 4 : 7
 * 5 : maj7
 * 6 : semi-diminished or min7b5
-* 0 : min Maj7 chords
+* 7 : diminished triads
+* 8 : augmented triads
 * 9 : major modes : Ionian, Dorian, Phrygian, Lydian, Mixolydian, Eolian and Locrian
-* 99 : all intervals
-* 991 : tritons
-* 992 : 4th
-* 993 : 6th min
-* 994 : 6th maj
-* 999 : 9th
-* 9911 : 11th
-* 9913 : 13th
+* 10 : all intervals
+* 11 : tritons
+* 12 : 4th
+* 13 : 6th min
+* 14 : 6th maj
+* 15 : 9th
+* 16 : 11th
+* 17 : 13th
 
 ### Example
 To run the training, the user would for example type :
