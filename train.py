@@ -4,241 +4,175 @@ from math import floor
 import argparse
 from tkinter import Tk, Label, Message
 
+TONES = [
+    'C', 'F', 'Bb',
+    'Eb', 'Ab', 'Db',
+    'F#', 'B', 'E',
+    'A', 'D', 'G',
+    'A#', 'D#', 'G#',
+    'C#', 'Gb'
+]
 
-"""
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------                   FUNCTIONS              ------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-"""
+MAJOR_MODES_NAMES = [
+    'Ionian', 'Dorian', 'Phrygian',
+    'Lydian', 'Mixolydian', 'Eolian',
+    'Locrian'
+]
 
-def compute_names(tons):
-    triadesMin = [e + '-' for e in tons]
-    accordsMin7 = [e + '7' for e in triadesMin]
-    accords7 = [e + '7' for e in tons]
-    accordsMaj7 = [e + 'Maj7' for e in tons]
-    #accordsDemiDim = [e + 'b5' for e in accordsMin7] #Ø
-    accordsDemiDim = [e + ' Ø' for e in tons] #Ø
-    accordsDim = [e + ' °' for e in tons]
-    accordsAugm = [e + ' aug' for e in tons]
-    modesNames = ['Ionian', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Eolian', 'Locrian']
-    intervalles = ['Seconde min', 'Seconde maj', 'Tierce min', 'Tierce maj', 'Quarte', 'Quarte augm / triton',
-                   'Quinte', 'Sixte mineure', 'Sixte majeure', 'Septième min', 'Septieme maj']
-    tritons = ['Triton de \n ' + e for e in TONS]
-    quartes = ['Quarte de \n ' + e for e in TONS]
-    sixtes_maj = ['Sixte maj de \n ' + e for e in TONS]
-    sixtes_min = ['Sixte min de \n ' + e for e in TONS]
+INTERVALS = [
+    'minor 2th', 'major 2th', 'minor 3rd',
+    'major 3rd', '4th', 'triton',
+    '5th', 'minor 6th', ' major 6th',
+    'minor 7th', 'major 7th'
+]
 
-    neuviemes = ['Neuvieme de \n ' + e for e in TONS]
-    onziemes = ['Onzieme de \n ' + e for e in TONS]
-    treiziemes = ['Treizieme de \n ' + e for e in TONS]
-    accordsMinMaj7 = [e + ' mM7' for e in tons]
 
-    return {'triadesMaj' : tons, 'triadesMin' : triadesMin, 'accordsMin7' : accordsMin7, 'accords7' : accords7,
-            'accordsMaj7' : accordsMaj7, 'accordsDemiDim' : accordsDemiDim, 'accordsDim' : accordsDim,
-           'accords_augm' : accordsAugm, 'modes' : modesNames, 'intervalles' : intervalles,
-            'tritons' : tritons, 'quartes' : quartes, 'sixtes_min' : sixtes_min, 'sixtes_maj' : sixtes_maj,
-            'neuviemes' : neuviemes, 'onziemes' : onziemes, 'treiziemes' : treiziemes,
-            'accordsMinMaj7' : accordsMinMaj7}
+def name_to_content(name: str):
+    mapping_name_content = {
+        'minor_major_7': [e + ' mM7' for e in TONES],
+        'major_triads': TONES,
+        'minor_triads': [e + '-' for e in TONES],
+        'minor_7': [e + '-7' for e in TONES],
+        '7': [e + '7' for e in TONES],
+        'major_7': [e + 'Maj7' for e in TONES],
+        'semi_diminished': [e + ' Ø' for e in TONES],
+        'diminished': [e + ' °' for e in TONES],
+        'augmented': [e + ' aug' for e in TONES],
+        'major_modes': [tone + ' ' + m for tone in TONES for m in MAJOR_MODES_NAMES],
+        'intervals': [interval + '\n of \n ' + tone for interval in INTERVALS for tone in TONES],
+        'triton': ['Triton of \n ' + e for e in TONES],
+        '4th': ['4th of \n ' + e for e in TONES],
+        'minor_6th': ['minor 6th of \n ' + e for e in TONES],
+        'major_6th': ['major 6th of \n ' + e for e in TONES],
+        '9th': ['9th of \n ' + e for e in TONES],
+        '11th': ['11th of \n ' + e for e in TONES],
+        '13th': ['13th of \n ' + e for e in TONES]
+    }
 
-def getList(mode : int) -> list:
-    """
-    Does the mapping between code and chords.
-    Return the list of tones I am gonna work with, according to the following mapping :
+    return mapping_name_content[name]
 
-    ------  Triads ------
-    1 : major triads
-    2 : minor triads
-    7 : dim triads
-    8 : augmented triads
 
-    ------  Chords with 4+ tones ------
-    3 : min7
-    4 : 7
-    5 : maj7
-    6 : demi-dim or min7b5
-    0 : accords min Maj7
+def mode_to_name(var_mode: int) -> list:
 
-    ------  Theory ------
-    9 : modes
-    99 : all intervals
-    991 : tritons
-    992 : 4th
-    993 : 6th min
-    994 : 6th maj
-    999 : 9th
-    9911 : 11th
-    9913 : 13th
+    mapping_mode_name = {
+        '0': 'minor_major_7',
+        '1': 'major_triads',
+        '2': 'minor_triads',
+        '3': 'minor_7',
+        '4': '7',
+        '5': 'major_7',
+        '6': 'semi_diminished',
+        '7': 'diminished',
+        '8': 'augmented',
+        '9': 'major_modes',
+        '10': 'intervals',
+        '11': 'triton',
+        '12': '4th',
+        '13': 'minor_6th',
+        '14': 'major_6th',
+        '15': '9th',
+        '16': '11th',
+        '17': '13th'
+    }
 
-    """
-    if mode == 1:
-        myList = triadesMaj
-    if mode == 2:
-        myList = triadesMin
-    if mode == 3:
-        myList = accordsMin7
-    if mode == 4:
-        myList = accords7
-    if mode == 5:
-        myList = accordsMaj7
-    if mode == 6:
-        myList = accordsDemiDim
-    if mode == 7:
-        myList = accordsDim
-    if mode == 8:
-        myList = accordsAugm
-    if mode == 9:
-        myList = [tone + ' ' + m for tone in triadesMaj for m in modes]
-    if mode == 99:
-        myList = [interv + '\n de \n ' + tone for interv in intervalles for tone in triadesMaj]
-    if mode == 991:
-        myList = tritons
-    if mode == 992:
-        myList = quartes
-    if mode == 993:
-        myList = sixtes_min
-    if mode == 994:
-        myList = sixtes_maj
-    if mode == 999:
-        myList = neuviemes
-    if mode == 9911:
-        myList = onziemes
-    if mode == 9913:
-        myList = treiziemes
-    if mode == 0:
-        myList = accordsMinMaj7
+    return mapping_mode_name[str(var_mode)]
 
-    return myList
 
-def train(mode : int, dt, nbRepetitions = 2, subtitle=""):
-    """ Show the chord to play. One chord every dt seconds. Once all the chords have been played once, another round can begin."""
+def train(train_mode: int, dt, nb_repetitions=2, train_subtitle=""):
+    """ Display chords every dt seconds. Once all the chords have been played once, another round can begin."""
 
-    myList = getList(mode)
-    listOfChosenElements = []
-    n = len(myList)
+    my_list = name_to_content(mode_to_name(train_mode))
+    elements_already_chosen = []
+    n = len(my_list)
 
-    for i in range(nbRepetitions * n):
-        
-        if len(listOfChosenElements) == n:
-            listOfChosenElements = []
-        
-        el = choice(myList)
-        
-        #Vérification que l'élement n'a pas été choisi dans le dernier cycle. Si oui, on retire un autre élément.
-        while el in listOfChosenElements:
-            el = choice(myList)
-            
-        # Ajout de l'élément dans la liste des éléments déjà tirés
-        listOfChosenElements.append(el)
-        #print(el)
-        
-        #Affichage
+    for i in range(nb_repetitions * n):
+
+        if len(elements_already_chosen) == n:
+            elements_already_chosen = []
+
+        el = choice(my_list)
+
+        # Check that the element has not been played already in the current cycle.
+        while el in elements_already_chosen:
+            el = choice(my_list)
+
+        # Update list of already played elements
+        elements_already_chosen.append(el)
+
+        # Display
         root = Tk()
         root.attributes('-fullscreen', True)
         root.after(floor(dt * 1000), lambda: root.destroy())
         msg = Message(root, text=el)
         msg.config(font=('times', 100, 'italic bold underline'))
         msg.pack()
-        
-        # deuxième message optionnel
-        msg1 = Message(root, text= subtitle)
+
+        # Optional message
+        msg1 = Message(root, text=train_subtitle)
         msg1.config(font=('times', 50))
         msg1.pack()
-        
+
         root.mainloop()
 
-"""
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------          INITIALIZING THE VARIABLES        ------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-"""
 
-TONS = ['C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'F#', 'B', 'E', 'A', 'D', 'G']
-supl_tons = ['A#', 'D#', 'G#', 'C#', 'Gb']
-TONS = TONS + supl_tons
-#TONS = supl_tons
-dic = compute_names(TONS)
-triadesMaj = TONS
-triadesMin = dic['triadesMin']
-accordsMin7 = dic['accordsMin7']
-accords7 = dic['accords7']
-accordsMaj7 = dic['accordsMaj7']
-accordsDemiDim = dic['accordsDemiDim']
-accordsDim = dic['accordsDim']
-accordsAugm = dic['accords_augm']
-modes = dic['modes']
-intervalles = dic['intervalles']
-tritons = dic['tritons']
-quartes = dic['quartes']
-sixtes_maj = dic['sixtes_maj']
-sixtes_min = dic['sixtes_min']
-neuviemes = dic['neuviemes']
-onziemes = dic['onziemes']
-treiziemes = dic['treiziemes']
-accordsMinMaj7 = dic['accordsMinMaj7']
+if __name__ == "__main__":
 
-		
-"""
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------          GETTING THE ARGUMENTS           ------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-"""
+    # Parse arguments
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-m',
-                    '--mode',
-                    action="store",
-                    dest="mode",
-                    type=int,
-                    help="Mode used for the training. For example, 3 is minor 7 chords, and 5 is major7 chords.")
-parser.add_argument('-d',
-                    '--delta',
-                    action="store",
-                    dest="delta_t",
-                    type=float,
-                    help="Time beetween 2 chords. The smaller, the harder the training is.")
-parser.add_argument('-n',
-                    '--nb_cycles',
-                    action="store",
-                    dest="nb_cycles",
-                    type=int,
-                    help="Number of times the list will be browsed.")
-					
-parser.add_argument('-s',
-                    '--sleep_time',
-                    action="store",
-                    dest="sleep_time",
-                    type=int,
-					default = 10,
-                    help="Number of times the list will be browsed.")
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-m',
+                        '--mode',
+                        action="store",
+                        dest="mode",
+                        type=int,
+                        help="Mode used for the training. For example, 3 is minor 7 chords, and 5 is major7 chords.")
 
-parser.add_argument('-t',
-                    '--text',
-                    action="store",
-                    dest="subtitle",
-                    type=str,
-					default = "",
-                    help="Subtitle to print while training.")
+    parser.add_argument('-d',
+                        '--delta',
+                        action="store",
+                        dest="delta_t",
+                        type=float,
+                        help="Time beetween 2 chords. The smaller, the harder the training is.")
 
-args = parser.parse_args()
-mode = args.mode
-delta_t = args.delta_t
-nb_cycles = args.nb_cycles
-sleep_time = args.sleep_time
-subtitle = args.subtitle
+    parser.add_argument('-n',
+                        '--nb_cycles',
+                        action="store",
+                        dest="nb_cycles",
+                        type=int,
+                        help="Number of times the list will be browsed.")
 
-"""
-------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------            LAUNCHING TRAINING            ------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------
-"""
+    parser.add_argument('-s',
+                        '--sleep_time',
+                        action="store",
+                        dest="sleep_time",
+                        type=int,
+                        default=10,
+                        help="Number of times the list will be browsed.")
 
-print("\n\n" + "-------------------------------------------------------------------" * 5 + "\n\n")
-print(f"You have asked this training :\n\nmode : {mode}     |       delta_t : {delta_t}        |  nb_cycles : {nb_cycles}   \n\n")
-sleep(sleep_time)
+    parser.add_argument('-t',
+                        '--text',
+                        action="store",
+                        dest="subtitle",
+                        type=str,
+                        default="",
+                        help="Subtitle to print while training.")
 
-try:
-    train(mode = mode, dt = delta_t, nbRepetitions = nb_cycles, subtitle = subtitle)
-except KeyboardInterrupt:
-    print("                                                            INTERRUPTION OF TRAINING    ")
-finally:
+    args = parser.parse_args()
+    mode = args.mode
+    delta_t = args.delta_t
+    nb_cycles = args.nb_cycles
+    sleep_time = args.sleep_time
+    subtitle = args.subtitle
+
+    # Launch training
+
     print("\n\n" + "-------------------------------------------------------------------" * 5 + "\n\n")
+    print(f"You have asked this training :\n\nmode : {mode}     |       delta_t : {delta_t}        |  nb_cycles : {nb_cycles}   \n\n")
+    sleep(sleep_time)
+
+    try:
+        train(mode=mode, dt=delta_t, nb_repetitions=nb_cycles, subtitle=subtitle)
+    except KeyboardInterrupt:
+        print("                                                            INTERRUPTION OF TRAINING    ")
+    finally:
+        print("\n\n" + "-------------------------------------------------------------------" * 5 + "\n\n")
