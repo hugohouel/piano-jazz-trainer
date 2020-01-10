@@ -52,7 +52,7 @@ This would provide a training of major triads. The user would be displayed all 1
 
 ## Prerequisites
 
-To make sure you have all the dependencies required in this project, go at the root and run
+To make sure you have all the dependencies required in this project, run
 
 ```
 pip install -r requirements.txt
