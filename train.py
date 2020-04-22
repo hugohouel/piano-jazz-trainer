@@ -46,7 +46,8 @@ def name_to_content(name: str):
         'major_6th': ['major 6th of \n ' + e for e in TONES],
         '9th': ['9th of \n ' + e for e in TONES],
         '11th': ['11th of \n ' + e for e in TONES],
-        '13th': ['13th of \n ' + e for e in TONES]
+        '13th': ['13th of \n ' + e for e in TONES],
+        '7_b9_b13': [e + '7 b9 b13' for e in TONES]
     }
 
     return mapping_name_content[name]
@@ -72,7 +73,8 @@ def mode_to_name(var_mode: int) -> list:
         '14': 'major_6th',
         '15': '9th',
         '16': '11th',
-        '17': '13th'
+        '17': '13th',
+        '18': '7_b9_b13'
     }
 
     return mapping_mode_name[str(var_mode)]
