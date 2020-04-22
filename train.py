@@ -80,10 +80,10 @@ def mode_to_name(var_mode: int) -> list:
     return mapping_mode_name[str(var_mode)]
 
 
-def train(train_mode: int, dt, nb_repetitions=2, train_subtitle=""):
+def train(mode: int, dt, nb_repetitions=2, subtitle=""):
     """ Display chords every dt seconds. Once all the chords have been played once, another round can begin."""
 
-    my_list = name_to_content(mode_to_name(train_mode))
+    my_list = name_to_content(mode_to_name(mode))
     elements_already_chosen = []
     n = len(my_list)
 
@@ -110,7 +110,7 @@ def train(train_mode: int, dt, nb_repetitions=2, train_subtitle=""):
         msg.pack()
 
         # Optional message
-        msg1 = Message(root, text=train_subtitle)
+        msg1 = Message(root, text=subtitle)
         msg1.config(font=('times', 50))
         msg1.pack()
 
