@@ -20,10 +20,12 @@ MAJOR_MODES_NAMES = [
 ]
 
 INTERVALS = [
-    'minor 2th', 'major 2th', 'minor 3rd',
-    'major 3rd', '4th', 'triton',
-    '5th', 'minor 6th', ' major 6th',
-    'minor 7th', 'major 7th'
+    'min 2nd', 'Maj 2nd', 'min 3rd',
+    'Maj 3rd', '4th', 'triton',
+    '5th', 'min 6th', ' Maj 6th',
+    'min 7th', 'Maj 7th', '9',
+    'b9', '11', '13',
+    'b13'
 ]
 
 
@@ -41,13 +43,14 @@ def name_to_content(name: str):
         'major_modes': [tone + ' ' + m for tone in TONES for m in MAJOR_MODES_NAMES],
         'intervals': [interval + '\n of \n ' + tone for interval in INTERVALS for tone in TONES],
         'triton': ['Triton of \n ' + e for e in TONES],
-        '4th': ['4th of \n ' + e for e in TONES],
+        '11th': ['11th of \n ' + e for e in TONES],
         'minor_6th': ['minor 6th of \n ' + e for e in TONES],
         'major_6th': ['major 6th of \n ' + e for e in TONES],
         '9th': ['9th of \n ' + e for e in TONES],
         '11th': ['11th of \n ' + e for e in TONES],
         '13th': ['13th of \n ' + e for e in TONES],
-        '7_b9_b13': [e + '7 b9 b13' for e in TONES]
+        '7_b9_b13': [e + '7 b9 b13' for e in TONES],
+        'minor_6_chord': [e + '-6' for e in TONES]
     }
 
     return mapping_name_content[name]
@@ -68,11 +71,9 @@ def mode_to_name(var_mode: int) -> list:
         '9': 'major_modes',
         '10': 'intervals',
         '11': 'triton',
-        '12': '4th',
-        '13': 'minor_6th',
-        '14': 'major_6th',
-        '15': '9th',
-        '16': '11th',
+        '12': '11th',
+        '13': 'minor_13th',
+        '14': 'minor_6_chord',
         '17': '13th',
         '18': '7_b9_b13'
     }
@@ -149,7 +150,7 @@ if __name__ == "__main__":
                         dest="sleep_time",
                         type=int,
                         default=10,
-                        help="Number of times the list will be browsed.")
+                        help="Sleep time before launching training.")
 
     parser.add_argument('-t',
                         '--text',
