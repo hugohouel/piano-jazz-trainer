@@ -20,13 +20,11 @@ MAJOR_MODES_NAMES = [
 ]
 
 INTERVALS = [
-    'min 2nd', 'Maj 2nd', 'min 3rd',
-    'Maj 3rd', '4th', 'triton',
-    '5th', 'min 6th', ' Maj 6th',
-    'min 7th', 'Maj 7th', '9',
-    'b9', '11', '13',
-    'b13'
-]
+    'b9', '9th', 'min 3rd',
+    'Maj 3rd', '11th', 'triton',
+    '5th', 'b13', ' 13th',
+    'min 7th', 'Maj 7th'
+    ]
 
 
 def name_to_content(name: str):
@@ -49,6 +47,7 @@ def name_to_content(name: str):
         '9th': ['9th of \n ' + e for e in TONES],
         '11th': ['11th of \n ' + e for e in TONES],
         '13th': ['13th of \n ' + e for e in TONES],
+        'minor_13th': ['b13 of \n ' + e for e in TONES],
         '7_b9_b13': [e + '7 b9 b13' for e in TONES],
         'minor_6_chord': [e + '-6' for e in TONES]
     }
