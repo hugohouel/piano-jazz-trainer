@@ -168,7 +168,9 @@ if __name__ == "__main__":
 
     # Launch training
 
-    print("\n\n" + "-------------------------------------------------------------------" * 5 + "\n\n")
+    double_line = "\n\n" + "-" * 422 + "\n\n"
+
+    print(double_line)
     print(f"You have asked this training :\n\nmode : {mode}     |       delta_t : {delta_t}        |  nb_cycles : {nb_cycles}   \n\n")
     sleep(sleep_time)
 
@@ -177,4 +179,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("                                                            INTERRUPTION OF TRAINING    ")
     finally:
-        print("\n\n" + "-------------------------------------------------------------------" * 5 + "\n\n")
+        print(double_line)
