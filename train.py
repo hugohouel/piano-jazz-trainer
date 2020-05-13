@@ -21,7 +21,7 @@ MAJOR_MODES_NAMES = [
 
 INTERVALS = [
     'b9', '9th', 'min 3rd',
-    'Maj 3rd', '11th', 'triton',
+    'Maj 3rd', '11th', 'b5',
     '5th', 'b13', ' 13th',
     'min 7th', 'Maj 7th'
     ]
@@ -40,7 +40,7 @@ def name_to_content(name: str):
         'augmented': [e + ' aug' for e in TONES],
         'major_modes': [tone + ' ' + m for tone in TONES for m in MAJOR_MODES_NAMES],
         'intervals': [interval + '\n of \n ' + tone for interval in INTERVALS for tone in TONES],
-        'triton': ['Triton of \n ' + e for e in TONES],
+        'triton': ['b5 of \n ' + e for e in TONES],
         '11th': ['11th of \n ' + e for e in TONES],
         'minor_6th': ['minor 6th of \n ' + e for e in TONES],
         'major_6th': ['major 6th of \n ' + e for e in TONES],
