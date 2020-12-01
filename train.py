@@ -13,6 +13,22 @@ TONES = [
     'C#', 'Gb'
 ]
 
+MAJOR_TONES = [
+    'C', 'F', 'Bb',
+    'Eb', 'Ab', 'Db',
+    'Gb', 'F#', 'G',
+    'D', 'A', 'E',
+    'B'
+]
+
+MINOR_TONES = [
+    'A', 'D', 'G',
+    'C', 'F', 'Bb',
+    'Eb', 'D#', 'E',
+    'B', 'F#', 'C#',
+    'G#'
+]
+
 MAJOR_MODES_NAMES = [
     'Ionian', 'Dorian', 'Phrygian',
     'Lydian', 'Mixolydian', 'Eolian',
@@ -39,7 +55,7 @@ def name_to_content(name: str):
         'diminished': [e + ' °' for e in TONES],
         'augmented': [e + ' aug' for e in TONES],
         'major_modes': [tone + ' ' + m for tone in TONES for m in MAJOR_MODES_NAMES],
-        'intervals': [interval + '\n of \n ' + tone for interval in INTERVALS for tone in TONES],
+        'all_intervals': [interval + '\n of \n ' + tone for interval in INTERVALS for tone in TONES],
         'triton': ['b5 of \n ' + e for e in TONES],
         '11th': ['11th of \n ' + e for e in TONES],
         'minor_6th': ['minor 6th of \n ' + e for e in TONES],
@@ -49,7 +65,9 @@ def name_to_content(name: str):
         '13th': ['13th of \n ' + e for e in TONES],
         'minor_13th': ['b13 of \n ' + e for e in TONES],
         '7_b9_b13': [e + '7 b9 b13' for e in TONES],
-        'minor_6_chord': [e + '-6' for e in TONES]
+        'minor_6_chord': [e + '-6' for e in TONES],
+        'major_tones': MAJOR_TONES,
+        'minor_tones': [t + '-' for t in MINOR_TONES]
     }
 
     return mapping_name_content[name]
@@ -68,11 +86,13 @@ def mode_to_name(var_mode: int) -> list:
         '7': 'diminished',
         '8': 'augmented',
         '9': 'major_modes',
-        '10': 'intervals',
+        '10': 'all_intervals',
         '11': 'triton',
         '12': '11th',
         '13': 'minor_13th',
         '14': 'minor_6_chord',
+        '15': 'major_tones',
+        '16': 'minor_tones',
         '17': '13th',
         '18': '7_b9_b13'
     }
@@ -171,7 +191,10 @@ if __name__ == "__main__":
     double_line = "\n\n" + "-" * 422 + "\n\n"
 
     print(double_line)
-    print(f"You have asked this training :\n\nmode : {mode}     |       delta_t : {delta_t}        |  nb_cycles : {nb_cycles}   \n\n")
+    print(f"You have asked this training :\n\nmode : {mode_to_name(mode)}     |"
+          f"       delta_t : {delta_t}        |"
+          f"       nb_cycles : {nb_cycles}   \n\n")
+
     sleep(sleep_time)
 
     try:
