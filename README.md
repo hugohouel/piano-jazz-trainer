@@ -67,7 +67,5 @@ If you're a piano jazz player and feel like contributing, that's great! Contact 
 I started this project in April 2019 to help me learn & memorize jazz chords and voicings. Hope it can help you too!
 
 ## TO DO
-* script to update my time paramter quickly
-* agregation score tool - get a dashboard on my performances (the time parameters I am able to perform the programs with)
 * docker package - to deploy easily
 * mobile/web version - to have access everywhere
