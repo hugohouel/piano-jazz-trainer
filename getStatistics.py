@@ -9,15 +9,16 @@ MOD = 'Modes'
 VOI = 'Voicings'
 TRI = 'Triades'
 CAD = '251'
+GAM = 'Gammes'
 
 
 CATEGORIES = [VOI, TRI, ITE,
               MOD, ARM, ACC,
-              CAD]
+              CAD, GAM]
 
 
 def getCategoryOfFile(fileName: str) -> str:
-    global ACC, ARM, ITE, MOD, VOI, TRI, CAD
+    global ACC, ARM, ITE, MOD, VOI, TRI, CAD, GAM
 
     if fileName.startswith('v_'):
         return VOI
@@ -33,6 +34,8 @@ def getCategoryOfFile(fileName: str) -> str:
         return ITE
     elif fileName.startswith('modes'):
         return MOD
+    elif fileName.startswith('g_'):
+        return GAM
     else:
         return ''
 
