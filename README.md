@@ -10,6 +10,12 @@ Via command line, the player chooses what he wants to practise among the 4 categ
 Every d seconds, the program displays on the screen the symbol of the figure he has to play. 
 Once the player gets confortable with d, he can then try with 0.9 * d, and so on, until he is able to play the right thing very quick.
 
+## Overview of the files
+This projects is composed of differents elements :
+* train.py : contains the intelligence of the training
+* getStatistics.py : allows to display in the terminal the differents scores of the player in every category (this makes reference to the scripts)
+* update.py : allows to quickly update the new time of the training, without having to open the file and change it manually. Ex : ```python update.py -f i_all.bat -t 1``` will modify the time parameter to the i_all.bat program, to 1 second.
+
 ## Getting Started
 
 Clone the repository. Run the train.py file with your python3 interpreter, using the command line to pass 3 required arguments
@@ -69,3 +75,4 @@ I started this project in April 2019 to help me learn & memorize jazz chords and
 ## TO DO
 * docker package - to deploy easily
 * mobile/web version - to have access everywhere
+* use a subfolder "scripts" with all the trainings
