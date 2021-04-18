@@ -14,7 +14,7 @@ Once the player gets confortable with d, he can then try with 0.9 * d, and so on
 This projects is composed of differents elements :
 * train.py : contains the intelligence of the training
 * getStatistics.py : allows to display in the terminal the differents scores of the player in every category (this makes reference to the scripts)
-* update.py : allows to quickly update the new time of the training, without having to open the file and change it manually. Ex : ```python update.py -f i_all.bat -t 1``` will modify the time parameter to the i_all.bat program, to 1 second.
+* updateTimeParameterInFile.py : allows to quickly update the new time of the training, without having to open the file and change it manually. Ex : ```python updateTimeParameterInFile.py -f i_all.bat -t 1``` will modify the time parameter to the i_all.bat program, to 1 second.
 
 ## Getting Started
 
