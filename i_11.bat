@@ -6,4 +6,4 @@
 
 :: Record 2.2
 
-python train.py --mode 12 --delta 3.6 --nb_cycles 1 -s 3
+python train.py --mode 12 --delta 4.7 --nb_cycles 1 -s 3
