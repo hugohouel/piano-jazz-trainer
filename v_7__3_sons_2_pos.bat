@@ -7,4 +7,4 @@
 
 :: record 1.6
 
-python train.py --mode 4 --delta 2.5 --nb_cycles 1 -s 5
+python train.py --mode 4 --delta 2.2 --nb_cycles 1 -s 5

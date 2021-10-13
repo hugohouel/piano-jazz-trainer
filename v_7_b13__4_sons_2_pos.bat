@@ -5,4 +5,4 @@
 
 :: Record 2.0
 
-python train.py --mode 18 --delta 5 --nb_cycles 1 --sleep_time 3 
+python train.py --mode 18 --delta 3.8 --nb_cycles 1 --sleep_time 3 
