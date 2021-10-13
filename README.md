@@ -48,6 +48,8 @@ Here is the corresponding table between the mode and the chords to play on the k
 * 15 : 9th
 * 16 : 11th
 * 17 : 13th
+* 20 : 7#9
+* 21 : sus
 
 ### Example
 To run the training, the user would for example type :

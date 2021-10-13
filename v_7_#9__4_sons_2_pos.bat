@@ -2,4 +2,4 @@
 :: Le voicing des accords 7#9 comprend aussi la b13 : en effet le #9 sous-entend qu'on est sur l'accord de la gamme altérée
 :: ... et la gamme altérée possède un b13 et non pas une treizième juste.
 
-python train.py --mode 18 --delta 3.8 --nb_cycles 1 --sleep_time 3 
+python train.py --mode 20 --delta 10 --nb_cycles 1 --sleep_time 6 

@@ -64,9 +64,11 @@ def name_to_content(name: str):
         'minor_13th': ['b13 of \n ' + e for e in TONES],
         'all_13th': ['13th of \n ' + e for e in TONES] + ['b13 of \n ' + e for e in TONES],
         '7_b9_b13': [e + '7 b9 b13' for e in TONES],
+        '7_#9': [e + '7 #9' for e in TONES],
         'minor_6_chord': [e + '-6' for e in TONES],
         'major_tones': MAJOR_TONES,
-        'minor_tones': [t + '-' for t in MINOR_TONES]
+        'minor_tones': [t + '-' for t in MINOR_TONES],
+        'sus': [e + '   sus' for e in TONES]
     }
 
     return mapping_name_content[name]
@@ -94,7 +96,9 @@ def mode_to_name(var_mode: int) -> list:
         '16': 'minor_tones',
         '17': '13th',
         '18': '7_b9_b13',
-        '19': 'all_13th'
+        '19': 'all_13th',
+        '20': '7_#9',
+        '21': 'sus'
     }
 
     return mapping_mode_name[str(var_mode)]
