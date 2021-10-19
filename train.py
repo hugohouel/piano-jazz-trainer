@@ -45,15 +45,10 @@ INTERVALS = [
 
 def name_to_content(name: str):
     mapping_name_content = {
-        'minor_major_7': [e + ' mM7' for e in TONES],
-        'major_triads': TONES,
-        'minor_triads': [e + '-' for e in TONES],
-        'minor_7': [e + '-7' for e in TONES],
-        '7': [e + '7' for e in TONES],
-        'major_7': [e + 'Maj7' for e in TONES],
-        'semi_diminished': [e + ' Ø' for e in TONES],
-        'diminished': [e + ' °' for e in TONES],
-        'augmented': [e + ' aug' for e in TONES],
+
+        # Intervalles, modes et armures
+        'major_tones': MAJOR_TONES,
+        'minor_tones': [t + '-' for t in MINOR_TONES],
         'major_modes': [tone + ' ' + m for tone in TONES for m in MAJOR_MODES_NAMES],
         'all_intervals': [interval + '\n of \n ' + tone for interval in INTERVALS for tone in TONES],
         'triton': ['b5 of \n ' + e for e in TONES],
@@ -63,14 +58,31 @@ def name_to_content(name: str):
         '13th': ['13th of \n ' + e for e in TONES],
         'minor_13th': ['b13 of \n ' + e for e in TONES],
         'all_13th': ['13th of \n ' + e for e in TONES] + ['b13 of \n ' + e for e in TONES],
-        '7_b9_b13': [e + '7 b9 b13' for e in TONES],
-        '7_#9': [e + '7 #9' for e in TONES],
+
+        # Triades
+        'major_triads': TONES,
+        'minor_triads': [e + '-' for e in TONES],
+        'diminished': [e + ' °' for e in TONES],
+        'augmented': [e + ' aug' for e in TONES],
+
+        # Accords non altérés
+        'minor_major_7': [e + ' mM7' for e in TONES],
+        'minor_7': [e + '-7' for e in TONES],
+        '7': [e + '7' for e in TONES],
+        'major_7': [e + 'Maj7' for e in TONES],
+        'semi_diminished': [e + ' Ø' for e in TONES],
         'minor_6_chord': [e + '-6' for e in TONES],
-        'major_tones': MAJOR_TONES,
-        'minor_tones': [t + '-' for t in MINOR_TONES],
-        'sus': [e + '   sus' for e in TONES],
-        'major7_#11': [e + 'Maj7 #11' for e in TONES],
-        'major7_#5': [e + 'Maj7 #5' for e in TONES]
+        'sus': [e + ' sus' for e in TONES],
+        'phryg': [e + ' Phryg' for e in TONES],
+
+        # Accords altérés
+        '7_b9': [e + '7 b9' for e in TONES],
+        '7_#9': [e + '7 #9' for e in TONES],
+        '7_#11': [e + '7 #11' for e in TONES],
+        '7_b13': [e + '7 b13' for e in TONES],
+        '7_b9_b13': [e + '7 b9 b13' for e in TONES],
+        'major7_#11': [e + ' Maj7 #11' for e in TONES],
+        'major7_#5': [e + ' Maj7 #5' for e in TONES]
     }
 
     return mapping_name_content[name]
@@ -79,28 +91,40 @@ def name_to_content(name: str):
 def mode_to_name(var_mode: int) -> list:
 
     mapping_mode_name = {
-        '0': 'minor_major_7',
-        '1': 'major_triads',
-        '2': 'minor_triads',
-        '3': 'minor_7',
-        '4': '7',
-        '5': 'major_7',
-        '6': 'semi_diminished',
-        '7': 'diminished',
-        '8': 'augmented',
+        # Intervalles, modes et armures
         '9': 'major_modes',
         '10': 'all_intervals',
         '11': 'triton',
         '12': '11th',
         '13': 'minor_13th',
-        '14': 'minor_6_chord',
         '15': 'major_tones',
         '16': 'minor_tones',
         '17': '13th',
-        '18': '7_b9_b13',
         '19': 'all_13th',
-        '20': '7_#9',
+
+        # Triades
+        '1': 'major_triads',
+        '2': 'minor_triads',
+        '7': 'diminished',
+        '8': 'augmented',
+
+        # Accords non altérés
+        '0': 'minor_major_7',
+        '3': 'minor_7',
+        '4': '7',
+        '5': 'major_7',
+        '6': 'semi_diminished',
+        '14': 'minor_6_chord',
         '21': 'sus',
+        '27': 'phryg',
+
+        # Accords altérés
+        '24': '7_b9',
+        '20': '7_#9',
+        '25': '7_#11',
+        '26': '7_b13',
+        '18': '7_b9_b13',
+
         '22': 'major7_#11',
         '23': 'major7_#5'
     }

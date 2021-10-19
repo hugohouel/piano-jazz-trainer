@@ -9,12 +9,11 @@ MOD = 'Modes'
 VOI = 'Voicings'
 TRI = 'Triades'
 CAD = '251'
-GAM = 'Gammes'
 
 
-CATEGORIES = [VOI, TRI, ITE,
-              MOD, ARM, ACC,
-              CAD, GAM]
+CATEGORIES = [TRI, ITE, MOD,
+              ARM, ACC, CAD,
+              VOI]
 
 
 def getCategoryOfFile(fileName: str) -> str:
