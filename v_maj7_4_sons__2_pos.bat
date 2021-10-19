@@ -2,4 +2,4 @@
 
 :: Record 5.5
 
-python train.py --mode 5 --delta 3.2 --nb_cycles 1 -s 6
+python train.py --mode 5 --delta 2.2 --nb_cycles 1 -s 6
