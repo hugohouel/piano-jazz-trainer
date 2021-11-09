@@ -2,7 +2,7 @@
 
 from os import listdir
 
-ACC = 'Accords à 4 sons en position fondamentale'
+ACC = 'Accords en position fondamentale'
 ARM = 'Armure'
 ITE = 'Intervalles'
 MOD = 'Modes'
@@ -11,9 +11,8 @@ TRI = 'Triades'
 CAD = '251'
 
 
-CATEGORIES = [TRI, ITE, MOD,
-              ARM, ACC, CAD,
-              VOI]
+CATEGORIES = [TRI, ITE, ARM,
+              ACC, VOI]
 
 
 def getCategoryOfFile(fileName: str) -> str:
@@ -61,6 +60,6 @@ if __name__ == "__main__":
         for fileName in allScripts:
             if getCategoryOfFile(fileName) == cat:
                 timeParameter = getTimeParameterForFile(fileName)
-                print('\n {} has time parameter     {}'.format(fileName, timeParameter))
+                print('\n {}     :     {}'.format(fileName, timeParameter))
 
     print(simpleLine)
