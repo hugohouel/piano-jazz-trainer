@@ -74,6 +74,7 @@ def name_to_content(name: str):
         'minor_6_chord': [e + '-6' for e in TONES],
         'sus': [e + ' sus' for e in TONES],
         'phryg': [e + ' Phryg' for e in TONES],
+        'min11': [e + ' min11' for e in TONES],
 
         # Accords altérés
         '7_b9': [e + '7 b9' for e in TONES],
@@ -117,6 +118,7 @@ def mode_to_name(var_mode: int) -> list:
         '14': 'minor_6_chord',
         '21': 'sus',
         '27': 'phryg',
+        '28': 'min11',
 
         # Accords altérés
         '24': '7_b9',
