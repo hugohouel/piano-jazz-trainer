@@ -13,7 +13,7 @@ TONES = [
     'C#', 'Gb'
 ]
 
-MAJOR_TONES = [
+IONIAN_TONES = [
     'C', 'F', 'Bb',
     'Eb', 'Ab', 'Db',
     'Gb', 'F#', 'G',
@@ -21,12 +21,29 @@ MAJOR_TONES = [
     'B'
 ]
 
-MINOR_TONES = [
+# Les tons éoliens diffèrent : on ne dira jamais Gb dorien car ça supposerait qu'on est en Fab majeur.
+DORIAN_TONES = [
     'A', 'D', 'G',
     'C', 'F', 'Bb',
-    'Eb', 'D#', 'E',
-    'B', 'F#', 'C#',
-    'G#'
+    'Eb', 'Ab', 'G#',
+    'C#', 'F#', 'B',
+    'E'
+]
+
+MIXOLYDIAN_TONES = [
+    'C', 'F', 'Bb',
+    'Eb', 'Ab', 'Db',
+    'C#', 'F#', 'B',
+    'E', 'A', 'D',
+    'G'
+]
+
+EOLIAN_TONES = [
+    'A', 'D', 'G',
+    'C', 'F', 'Bb',
+    'Eb', 'D#', 'G#',
+    'C#', 'F#', 'B',
+    'E'
 ]
 
 MAJOR_MODES_NAMES = [
@@ -47,8 +64,8 @@ def name_to_content(name: str):
     mapping_name_content = {
 
         # Intervalles, modes et armures
-        'major_tones': MAJOR_TONES,
-        'minor_tones': [t + '-' for t in MINOR_TONES],
+        'major_tones': IONIAN_TONES,
+        'minor_tones': [t + '-' for t in EOLIAN_TONES],
         'major_modes': [tone + ' ' + m for tone in TONES for m in MAJOR_MODES_NAMES],
         'all_intervals': [interval + '\n of \n ' + tone for interval in INTERVALS for tone in TONES],
         'triton': ['b5 of \n ' + e for e in TONES],
@@ -58,6 +75,10 @@ def name_to_content(name: str):
         '13th': ['13th of \n ' + e for e in TONES],
         'minor_13th': ['b13 of \n ' + e for e in TONES],
         'all_13th': ['13th of \n ' + e for e in TONES] + ['b13 of \n ' + e for e in TONES],
+        'ionian_modes': [t + ' Ionian' for t in IONIAN_TONES],
+        'dorian_modes': [t + ' Dorian' for t in DORIAN_TONES],
+        'mixolydian_modes': [t + ' Mixolydian' for t in MIXOLYDIAN_TONES],
+        'eolian_modes': [t + ' Eolian' for t in EOLIAN_TONES],
 
         # Triades
         'major_triads': TONES,
@@ -72,7 +93,7 @@ def name_to_content(name: str):
         'major_7': [e + 'Maj7' for e in TONES],
         'semi_diminished': [e + ' Ø' for e in TONES],
         'minor_6': [e + '- 6' for e in TONES],
-        'sus': [e + ' sus' for e in TONES],
+        'sus': [e + ' sus4' for e in TONES],
         'phryg': [e + ' Phryg' for e in TONES],
         'min11': [e + ' min11' for e in TONES],
 
@@ -102,6 +123,11 @@ def mode_to_name(var_mode: int) -> list:
         '16': 'minor_tones',
         '17': '13th',
         '19': 'all_13th',
+        '29': 'ionian_modes',
+        '30': 'dorian_modes',
+        '31': 'mixolydian_modes',
+        '32': 'eolian_modes',
+
 
         # Triades
         '1': 'major_triads',
