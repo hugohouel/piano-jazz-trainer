@@ -96,6 +96,7 @@ def name_to_content(name: str):
         'sus': [e + ' sus4' for e in TONES],
         'phryg': [e + ' Phryg' for e in TONES],
         'min11': [e + ' min11' for e in TONES],
+        'diminished 7': [e + ' ° 7' for e in TONES],
 
         # Accords altérés
         '7_b9': [e + '7 b9' for e in TONES],
@@ -145,6 +146,7 @@ def mode_to_name(var_mode: int) -> list:
         '21': 'sus',
         '27': 'phryg',
         '28': 'min11',
+        '33': 'diminished 7',
 
         # Accords altérés
         '24': '7_b9',
